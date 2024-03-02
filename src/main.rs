@@ -1,9 +1,5 @@
 use anyhow::Result;
 use std::env;
-#[cfg(not(target_os = "windows"))]
-use std::os::unix::fs::MetadataExt;
-#[cfg(target_os = "windows")]
-use std::os::windows::fs::MetadataExt;
 
 struct Job<'a> {
     in_path: &'a str,
@@ -33,7 +29,7 @@ fn to_hevc<'a>(job: Job<'a>) -> Result<()> {
     match status.success() {
         true => {
             println!("{} converted", in_path);
-            match std::fs::metadata(in_path)?.size() > std::fs::metadata(out_path)?.size() {
+            match std::fs::metadata(in_path)?.len() > std::fs::metadata(out_path)?.len() {
                 true => std::fs::remove_file(in_path)?,
                 false => std::fs::rename(in_path, out_path)?,
             }
