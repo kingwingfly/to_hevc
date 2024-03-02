@@ -1,5 +1,9 @@
 use anyhow::Result;
-use std::{env, os::unix::fs::MetadataExt};
+use std::env;
+#[cfg(not(target_os = "windows"))]
+use std::os::unix::fs::MetadataExt;
+#[cfg(target_os = "windows")]
+use std::os::windows::fs::MetadataExt;
 
 struct Job<'a> {
     in_path: &'a str,
