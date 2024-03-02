@@ -1,19 +1,11 @@
 [package]
 name = "to_hevc"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 anyhow = "1.0.80"
-tokio = { version = "1", features = [
-    "rt-multi-thread",
-    "macros",
-    "process",
-    "signal",
-] }
-tokio-stream = { version = "0.1" }
-futures = "0.3"
 new_mime_guess = "4.0.1"
 mime = "0.3.17"
